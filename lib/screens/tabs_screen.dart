@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:meal_planner/screens/categories_screen.dart';
 import 'package:meal_planner/screens/favourites_screen.dart';
+import 'package:meal_planner/widgets/main_drawer.dart';
 
 class TabsScreen extends StatefulWidget {
   @override
@@ -31,6 +32,7 @@ class _TabsScreenState extends State<TabsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: MainDrawer(),
       appBar: AppBar(
         title: Text(_pages[_selectedPageIndex]['title']),
       ),
@@ -58,5 +60,3 @@ class _TabsScreenState extends State<TabsScreen> {
     );
   }
 }
-
-//continue from vid 22
