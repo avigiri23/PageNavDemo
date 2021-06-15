@@ -2,31 +2,41 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:meal_planner/models/meal.dart';
 import 'package:meal_planner/screens/categories_screen.dart';
 import 'package:meal_planner/screens/favourites_screen.dart';
 import 'package:meal_planner/widgets/main_drawer.dart';
 
+// ignore: must_be_immutable
 class TabsScreen extends StatefulWidget {
+  List<Meal> favouriteMeals;
+  TabsScreen(this.favouriteMeals);
   @override
   _TabsScreenState createState() => _TabsScreenState();
 }
 
 class _TabsScreenState extends State<TabsScreen> {
-  final List<Map<String, Object>> _pages = [
-    {
-      'page': CategoriesScreen(),
-      'title': 'Categories',
-    },
-    {
-      'page': FavouritesScreen(),
-      'title': 'Your favourites',
-    }
-  ];
+  List<Map<String, Object>> _pages;
   int _selectedPageIndex = 0;
   _selectPage(int index) {
     setState(() {
       _selectedPageIndex = index;
     });
+  }
+
+  @override
+  void initState() {
+    _pages = [
+      {
+        'page': CategoriesScreen(),
+        'title': 'Categories',
+      },
+      {
+        'page': FavouritesScreen(widget.favouriteMeals),
+        'title': 'Your favourites',
+      }
+    ];
+    super.initState();
   }
 
   @override
